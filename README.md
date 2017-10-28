@@ -1,0 +1,3 @@
+# machine_learning_course_ucp
+
+Jeppe and Asger learn how to make machines learn...
