@@ -1,0 +1,95 @@
+Let $X$ and $Y$ be two discrete random variables taking values in $\mathcal{X}$ and $\mathcal{Y}$, respectively.
+
+\textbf{Question 1:} Let me now proof that
+\begin{align}
+\mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y]
+\end{align}
+
+Let $p_{X,Y}$ be the joint distribution of $X$ and $Y$, and let $p_X$ and $p_Y$ be the marginal distributions of $X$ and $Y$, respectively. By definition of the marginalization of a discrete random variable, we know for all $x \in \mathcal{X}$ and $y \in \mathcal{Y}$ that
+\begin{align}
+\sum_{y \in \mathcal{Y}} p_{X,Y}(x,y) = p_X(x)
+\end{align}
+and
+\begin{align}
+\sum_{x \in \mathcal{X}} p_{X,Y}(x,y) = p_Y(y)
+\end{align}
+From these statements and the definition of the expectation of a discrete random variable, it follows that 
+\begin{align}
+\mathbb{E}[X + Y] = \sum_{(x,y) \in \mathcal{X}\times \mathcal{Y}} p_{X,Y}(x,y)(x+y) = \\ 
+\left( \sum_{(x,y) \in \mathcal{X}\times \mathcal{Y}} p_{X,Y}(x,y)x \right) + \left( \sum_{(x,y) \in \mathcal{X}\times \mathcal{Y}}p_{X,Y}(x,y)y \right) = \\ 
+\left( \sum_{x \in \mathcal{X}} x \sum_{y \in \mathcal{Y}} p_{X,Y}(x,y) \right) + \left( \sum_{y \in \mathcal{Y}} y \sum_{x \in \mathcal{X}} p_{X,Y}(x,y) \right) = \\ 
+\left( \sum_{x \in \mathcal{X}} x p_X(x) \right) + \left( \sum_{y \in \mathcal{Y}} y p_Y(y) \right) = \mathbb{E}[X] + \mathbb{E}[Y]
+\end{align}
+which proofs the statement on line (1).
+
+\textbf{Question 2:} Assume now that $X$ and $Y$ are independent. Let me now proof that
+\begin{align}
+\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]
+\end{align}
+
+By definition of indepence of random variables, we now know for all $x \in \mathcal{X}$ and $y \in \mathcal{Y}$ that 
+\begin{align}
+p_{X,Y}(x,y) = p_X(x)p_Y(y)
+\end{align}
+From these statements and the definition of the expectation of a discrete random variable, it follows that 
+\begin{align}
+\mathbb{E}[XY] = \\ \sum_{(x,y) \in \mathcal{X}\times \mathcal{Y}} p_{X,Y}(x,y)(xy) = \\
+\sum_{(x,y) \in \mathcal{X}\times \mathcal{Y}} p_X(x)p_Y(y)xy = \\ 
+\sum_{x \in \mathcal{X}} p_X(x)x \sum_{y \in \mathcal{Y}} p_Y(y)y = \\
+\mathbb{E}[X]\mathbb{E}[Y]
+\end{align}
+which proofs the statement on line (8).
+
+\textbf{Question 3:} Now throw away the assumption that $X$ and $Y$ are independent, and assume that $\mathcal{X} = \{x_1, x_2\}$ and $\mathcal{Y} = \{y_1, y_2\}$. Then this table would provide one option for a valid definition of the joint probability distribution $p_{X,Y}$:
+\begin{center}
+\begin{tabular}{lllll}
+                           & $x_1$                      & $x_2$                      &     &  \\ \cline{2-3}
+\multicolumn{1}{l|}{$y_1$} & \multicolumn{1}{l|}{0.001} & \multicolumn{1}{l|}{0.199} & 0.2 &  \\ \cline{2-3}
+\multicolumn{1}{l|}{$y_2$} & \multicolumn{1}{l|}{0.499} & \multicolumn{1}{l|}{0.301} & 0.8 &  \\ \cline{2-3}
+                           & 0.5                        & 0.5                        &     & 
+\end{tabular}
+\end{center}
+
+We see that with this definition of $p_{X,Y}$, then $X$ and $Y$ are not independent, since we for instance have that 
+\begin{align}
+p_{X_Y}(x_1,y_1)=0.001 \neq 0.1 = p_X(x_1)p_Y(y_1)
+\end{align}
+We therefore might have - depending on the values of $x_1, x_2, y_1$ and $y_2$ - that line (8) does not hold for $X$ and $Y$. If we for instance set $x_1 = 1000, x_2 = -1, y_1 = 1000$ and $y_2 = -1$, then we have that 
+\begin{align}
+\mathbb{E}[XY] = 0.001 \cdot 1000000 - 0.199 \cdot 1000 - 0.499 \cdot 1000 + 0.301 \cdot 1 = 302.301
+\end{align}
+and 
+\begin{align}
+\mathbb{E}[X]\mathbb{E}[Y] = 0.1 \cdot 1000000 - 0.1 \cdot 1000 - 0.4 \cdot 1000 + 0.4 \cdot 1 = 99500.4
+\end{align}
+In this case, we clearly see that $\mathbb{E}[XY] \neq \mathbb{E}[X]\mathbb{E}[Y]$.
+
+\textbf{Question 4:} Now go back to the definition of $X$ as an arbitrary discrete, random variable. Let me now proof that 
+\begin{align}
+\mathbb{E}[\mathbb{E}[X]] =\mathbb{E}[X]
+\end{align}
+Let $\mathbb{E}[X]$ be denoted $a$. Note that $a$ is just some real number. Since $p_X$ is a probability distribution, we know that 
+\begin{align}
+ \sum_{x\in \mathcal{X}}p_X(x) = 1
+\end{align}
+
+We now have that
+\begin{align}
+\mathbb{E}[\mathbb{E}[X]] = \mathbb{E}[a] = \sum_{x\in \mathcal{X}} p_X(x) a = a \sum_{x\in \mathcal{X}} p_X(x) = a = \mathbb{E}[X]
+\end{align}
+which proofs the statement on line (18).
+
+\textbf{Question 5:} Let me now proof that 
+\begin{align}
+\mathbb{V}[X] = \mathbb{E}[(X - \mathbb{E}[X])^2] = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+\end{align}
+This we can proof by simply completing the square, and then using our results from question 1 and 3:
+\begin{align}
+\mathbb{E}[(X - \mathbb{E}[X])^2] = \\
+\mathbb{E}[(X^2 + (\mathbb{E}[X])^2 - 2X\mathbb{E}[X]] = \\ 
+\mathbb{E}[X^2] + \mathbb{E}[(\mathbb{E}[X])^2] - \mathbb{E}[2X\mathbb{E}[X]] = \\ 
+\mathbb{E}[X^2] + (\mathbb{E}[X])^2 - 2 \mathbb{E}[X]\mathbb{E}[\mathbb{E}[X]] = \\ 
+\mathbb{E}[X^2] + (\mathbb{E}[X])^2 - 2 \mathbb{E}[X]\mathbb{E}[X] = \\ 
+\mathbb{E}[X^2] + (\mathbb{E}[X])^2 - 2 (\mathbb{E}[X])^2 = \\ 
+\mathbb{E}[X^2] - (\mathbb{E}[X])^2
+\end{align}

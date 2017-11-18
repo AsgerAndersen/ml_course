@@ -1,0 +1,35 @@
+\textbf{Question 1:} Let $\mathbb{P}$ be any probability distribution over some sample space $\Omega$, and let $A \subset \Omega$ be some event. By definition of the complement event $\overline{A}$, we know that 
+\begin{align}
+A \cup \overline{A} = \Omega 
+\end{align}
+From the axioms of probability, we also know that
+\begin{align}
+\mathbb{P}(\Omega) = 1
+\end{align}
+and that
+\begin{align}
+\mathbb{P}(A \cup \overline{A}) = \mathbb{P}(A) + \mathbb{P}(\overline{A})
+\end{align}
+since $A$ and $\overline{A}$ are mutually exclusive.
+From these three statements it follows that
+\begin{align}
+1 = \mathbb{P}(\Omega) = \mathbb{P}(A \cup \overline{A}) = \mathbb{P}(A) + \mathbb{P}(\overline{A})
+\end{align}
+from which it follows that
+\begin{align}
+\mathbb{P}(A) = 1 - \mathbb{P}(A)
+\end{align}
+which is what I was asked to proof.
+
+\textbf{Question 2:} We flip a fair coin 10 times. What is probability that we observe at least one tail? The complement event of observing at least one tail is only observing heads on all 10 flips. The probability of observing a head on single flip is one half, and since all the flips are independent the probability of observing 10 heads is 
+\begin{align}
+\left(\frac{1}{2}\right)^{10} \approx 0.000977 
+\end{align}
+The probability of oberserving at least one tail on 10 flips is therefore
+\begin{align}
+1 - \left(\frac{1}{2}\right)^{10} \approx  1 - 0.000977 = 0.999023
+\end{align}
+What is the probability that we observe at least two tails. The complement event is that observe zero or only one tail. From the cumulative binomial distribution we get that the probability of this complement event is approximately 0.010742. Therefore, the probability of observing at least two tails is approximately
+\begin{align}
+1 - 0.010742 = 0.989258
+\end{align} 
