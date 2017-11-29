@@ -1,0 +1,23 @@
+If we look at the case of logistic regression, we know that $h_w(x) = \Theta(w^T x)$, where
+\begin{align}
+\Theta(s) = \frac{e^s}{1+e^s}
+\end{align}
+By simpel calculation we get that
+\begin{align}
+1 - \Theta(s) = 1 - \frac{e^s}{1+e^s} = \frac{e^{-s}}{1+e^{-s}} = \Theta(-s)
+\end{align}
+which means that
+
+...
+
+We therefore have that
+\begin{align}
+
+\end{align}
+
+for $y\in \{-1,1 \}$ and all $x\in \mathcal{X}$.
+
+\begin{align}
+[[y_n = 1]]\left(\ln \left( \frac{1}{h_w(x_n)}\right)\right) + [[y_n = -1]]\left(\ln \left( \frac{1}{1 - h_w(x_n)}\right)\right) = \\ 
+[[y_n = 1]]\left(\ln \left( \frac{1}{h_w(x_n)}\right)\right) + [[y_n = -1]]\left(\ln \left( \frac{1}{1 - h_w(x_n)}\right)\right)
+\end{align}
