@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  18 NOV 2017 02:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.8.29)  27 NOV 2017 19:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -707,39 +707,122 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4])
 (/home/asger/my_files/studier/Kandidat/machine_learning/h1/nearest_neighbour/ne
-arest_neighbour.tex)
+arest_neighbour.tex
+<nearest_neighbour/digits_0_1.jpg, id=25, 1300.86pt x 578.16pt>
+File: nearest_neighbour/digits_0_1.jpg Graphic file (type jpg)
+
+<use nearest_neighbour/digits_0_1.jpg>
+Package pdftex.def Info: nearest_neighbour/digits_0_1.jpg used on input line 5.
+
+(pdftex.def)             Requested size: 390.26102pt x 173.44933pt.
+
+<nearest_neighbour/digits_0_8.jpg, id=26, 1300.86pt x 578.16pt>
+File: nearest_neighbour/digits_0_8.jpg Graphic file (type jpg)
+
+<use nearest_neighbour/digits_0_8.jpg>
+Package pdftex.def Info: nearest_neighbour/digits_0_8.jpg used on input line 7.
+
+(pdftex.def)             Requested size: 390.26102pt x 173.44933pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[5]
+[5 </home/asger/my_files/studier/Kandidat/machine_learning/h1/nearest_neighbour
+/digits_0_1.jpg>]
+<nearest_neighbour/digits_5_6.jpg, id=32, 1300.86pt x 578.16pt>
+File: nearest_neighbour/digits_5_6.jpg Graphic file (type jpg)
+
+<use nearest_neighbour/digits_5_6.jpg>
+Package pdftex.def Info: nearest_neighbour/digits_5_6.jpg used on input line 9.
+
+(pdftex.def)             Requested size: 390.26102pt x 173.44933pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[6 </home/asger/my_files/studier/Kandidat/machine_learning/h1/nearest_neighbour
+/digits_0_8.jpg> </home/asger/my_files/studier/Kandidat/machine_learning/h1/nea
+rest_neighbour/digits_5_6.jpg>])
+(/home/asger/my_files/studier/Kandidat/machine_learning/h1/linear_regression/li
+near_regression.tex
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[7] <linear_regression/reg_plot_1.jpg, id=41, 867.24pt x 578.16pt>
+File: linear_regression/reg_plot_1.jpg Graphic file (type jpg)
+
+<use linear_regression/reg_plot_1.jpg>
+Package pdftex.def Info: linear_regression/reg_plot_1.jpg used on input line 36
+.
+(pdftex.def)             Requested size: 390.2544pt x 260.16959pt.
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[8] <linear_regression/reg_plot_2.jpg, id=45, 867.24pt x 578.16pt>
+File: linear_regression/reg_plot_2.jpg Graphic file (type jpg)
+
+<use linear_regression/reg_plot_2.jpg>
+Package pdftex.def Info: linear_regression/reg_plot_2.jpg used on input line 40
+.
+(pdftex.def)             Requested size: 390.2544pt x 260.16959pt.
+)
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[9 </home/asger/my_files/studier/Kandidat/machine_learning/h1/linear_regression
+/reg_plot_1.jpg>]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 14.49998pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[10 </home/asger/my_files/studier/Kandidat/machine_learning/h1/linear_regressio
+n/reg_plot_2.jpg>]
 (/home/asger/my_files/studier/Kandidat/machine_learning/h1/home_assignment_1.au
 x) ) 
 Here is how much of TeX's memory you used:
- 4835 strings out of 494333
- 66421 string characters out of 6163939
+ 4878 strings out of 494333
+ 67662 string characters out of 6163939
  146397 words of memory out of 5000000
- 8055 multiletter control sequences out of 15000+600000
- 9198 words of font info for 35 fonts, out of 8000000 for 9000
+ 8084 multiletter control sequences out of 15000+600000
+ 11066 words of font info for 44 fonts, out of 8000000 for 9000
  372 hyphenation exceptions out of 8191
- 38i,11n,43p,417b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,1529b,321s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/symbols/msbm10.pfb>
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+>
 Output written on /home/asger/my_files/studier/Kandidat/machine_learning/h1/hom
-e_assignment_1.pdf (5 pages, 105154 bytes).
+e_assignment_1.pdf (10 pages, 528884 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 94 PDF objects out of 1000 (max. 8388607)
+ 63 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

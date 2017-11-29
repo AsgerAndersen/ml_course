@@ -1,0 +1,8 @@
+# SS_tot = sum(y - mean(y))^2
+# SS_reg = sum(f(y) - mean(y))^2
+# SS_res = sum(y - f(y))^2
+
+# r^2 = 1 - SS_res / SS_tot 
+# r^2 = 1 - mse(y) / var(y)
+
+# SS_tot = SS_reg + SS_res 
