@@ -28,7 +28,7 @@
 
 \section{The effect of scale (range) and normalization of random variables in Hoeffding's Inequality}
 
-\input{some_section.tex}
+\input{normalization_of_hoeffding/normalization_of_hoeffding.tex}
 
 \section{Probability in Practice}
 
@@ -74,5 +74,34 @@ By line (2) and line (6-9), we now get that
 f_S(w) = \sum_{n=1}^N \left[ [[y_n = 1]]\left(\ln \left( \frac{1}{h_w(x_n)}\right)\right) + [[y_n = -1]]\left(\ln \left( \frac{1}{1 - h_w(x_n)}\right)\right) \right]
 \end{align}
 As I have already said, we will end up with the same $\hat{w}$ for a given sample $S$, if we minimize $f_S(w)$ as if we maximize $L_S(w)$. If we had started by saying that we would like to estimate the probability $h_w(x) = P_w(y = 1|x)$ by choosing $\hat{w}$ such that we minimize the error function $f_S(w)$ defined as in line (10), we would have ended up with the same estimates of $P(y|x)$ for $y \in \{-1,1\}$ and $x\in \mathcal{X}$, as if we have used the maximum likelihood method. These two strategies are therefore equivalent.
+
+\subsection{Logistic regression loss gradient}
+
+In the algorithm for logistic regression, we determine the parameter $w \in \mathbb{R}^m$ in our final hypothesis
+\begin{align}
+h_w(x) = P_w(y = 1|x) = \frac{e^{w^Tx}}{1 + e^{w^Tx}}
+\end{align}
+using a given labeled sample $S = \{(x_1,y_1),...,(x_N,y_N)\}$ by minizing the function
+\begin{align}
+E_{in}(w) = \frac{1}{N} \sum_{n=1}^N \ln(1 + e^{-y_n w^T x_n})
+\end{align}
+We use gradient descent to do this, which means we have to find the loss gradient $\nabla E_{in}(w)$. We can use matrix calculus to to differentiate $E_{in}$
+\begin{align}
+D_w (E_{in}(w)) = D_w\left( \frac{1}{N} \sum_{n=1}^N \ln(1 + e^{-y_n w^T x_n}) \right) = \\ 
+ \frac{1}{N} \sum_{n=1}^N D_w \left( \ln(1 + e^{-y_n w^T x_n}) \right). 
+\end{align}
+Let us now focus on the inside of the sum
+\begin{align}
+D_w \left( \ln(1 + e^{-y_n w^T x_n}) \right) = \frac{D_w ( 1 + e^{-y_n w^T x_n})}{1 + e^{-y_n w^T x_n}} = \\ 
+\frac{D_w (e^{-y_n w^T x_n})}{1 + e^{-y_n w^T x_n}} =
+\frac{e^{-y_n w^T x_n} D_w(-y_nw^Tx)}{1 + e^{-y_n w^T x_n}} = \\ 
+-y_n x_n \frac{e^{-y_n w^T x_n}}{1 + e^{-y_n w^T x_n}} = -y_n x_n \Theta(-y_n w^T x_n)
+\end{align}
+Line (13-14) and line (15-17) now gives us that
+\begin{align}
+D_w (E_{in}(w)) =  \frac{1}{N} \sum_{n=1}^N D_w \left( \ln(1 + e^{-y_n w^T x_n}) \right) =
+\frac{1}{N} \sum_{n=1}^N  -y_n x_n \Theta(-y_n w^T x_n) 
+\end{align}
+which is what the exercise asked us to show. 
 
 \end{document}

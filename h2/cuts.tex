@@ -21,3 +21,13 @@ for $y\in \{-1,1 \}$ and all $x\in \mathcal{X}$.
 [[y_n = 1]]\left(\ln \left( \frac{1}{h_w(x_n)}\right)\right) + [[y_n = -1]]\left(\ln \left( \frac{1}{1 - h_w(x_n)}\right)\right) = \\ 
 [[y_n = 1]]\left(\ln \left( \frac{1}{h_w(x_n)}\right)\right) + [[y_n = -1]]\left(\ln \left( \frac{1}{1 - h_w(x_n)}\right)\right)
 \end{align}
+
+
+
+
+
+
+If we consider logistic regression as a method for classification, we can say that a point $y_n$ has been misclassified, if $P(y_n|x_n) < 0.5$ and $y_n = 1$, or or if $P(y_n|x_n) > 0.5$ and $y_n = -1$. Since we know from the book, statement (3.8), that 
+\begin{align}
+\Theta(-y_n w^T x_n) = 1 - \Theta(y_n w^T x_n) = 1 - P(y_n | x_n)
+\end{align}

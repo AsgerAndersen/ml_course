@@ -1,0 +1,42 @@
+Let all the assumptions of \textbf{corollary 2.4} be true for some random variables $X_1, ..., X_n$. Set $a_i = 0$ and $b_i=1$ for all $i \in \{1, ..., n\}$. By the assumptions of \textbf{corollary 2.4} and our definition of $a_i$ and $b_i$, we now have that all the assumptions of \textbf{theorem 2.2} are true for $X_1, ..., X_n$. We can therefore use \textbf{theorem 2.2} to conclude that for all $\varepsilon >0$
+\begin{align}
+\mathbb{P}\left\{ \sum_{i=1}^n X_i - \mathbb{E}\left[ \sum_{i=1}^n X_i \right] \geq \varepsilon \right\} \leq e^{-2 \varepsilon^2 / \sum_{i=1}^n (b_i - a_i)^2}
+\end{align}
+and
+\begin{align}
+\mathbb{P}\left\{ \sum_{i=1}^n X_i - \mathbb{E}\left[ \sum_{i=1}^n X_i \right] \leq - \varepsilon \right\} \leq e^{-2 \varepsilon^2 / \sum_{i=1}^n (b_i - a_i)^2}
+\end{align}
+
+Since the assumptions of the corollary states that $\mathbb{E}(X_i) = \mu$ for all $i \in \{1, ..., n\}$, then we know that 
+\begin{align}
+\mathbb{E}\left[ \sum_{i=1}^n X_i \right] = n\mu 
+\end{align}
+Since $b_i - a_i = 1$ for all $i \in \{1, ..., n\}$, we also know that
+\begin{align}
+\sum_{i=1}^n (b_i - a_i)^2 = n 
+\end{align}
+From line (XX-XX) we therefore get that for all $\varepsilon > 0$
+\begin{align}
+\mathbb{P}\left\{ \sum_{i=1}^n X_i - n\mu \geq \varepsilon \right\} \leq e^{- 2 \frac{\varepsilon^2}{n} } = e^{- 2n \left( \frac{ \varepsilon}{n} \right)^2 }
+\end{align}
+and
+\begin{align}
+\mathbb{P}\left\{ \sum_{i=1}^n X_i - n\mu \leq -\varepsilon \right\} \leq e^{- 2 \frac{\varepsilon^2}{n} } = e^{- 2n \left( \frac{ \varepsilon}{n} \right)^2 }
+\end{align}
+From this it clearly follows that for all $\varepsilon > 0$
+\begin{align}
+\mathbb{P}\left\{\frac{1}{n} \sum_{i=1}^n X_i - \mu \geq \frac{\varepsilon}{n} \right\} \leq = e^{- 2n \left( \frac{ \varepsilon}{n} \right)^2 }
+\end{align}
+and
+\begin{align}
+\mathbb{P}\left\{\frac{1}{n} \sum_{i=1}^n X_i - \mu \leq- \frac{\varepsilon}{n} \right\} \leq = e^{- 2n \left( \frac{ \varepsilon}{n} \right)^2 }
+\end{align}
+If $\varepsilon > 0$, then $\tilde{\varepsilon} = \frac{\varepsilon}{n} > 0$ for all $n\in \mathbb{N}$. We can therefore now conclude that for all $\tilde{\varepsilon}>0$
+\begin{align}
+\mathbb{P}\left\{\frac{1}{n} \sum_{i=1}^n X_i - \mu \geq \tilde{\varepsilon} \right\} \leq = e^{- 2n \tilde{\varepsilon}^2 }
+\end{align}
+and
+\begin{align}
+\mathbb{P}\left\{\frac{1}{n} \sum_{i=1}^n X_i - \mu \leq - \tilde{\varepsilon} \right\} \leq = e^{- 2n \tilde{\varepsilon}^2 }
+\end{align}
+We have now proven that \textbf{corollary 2.4} follows from \textbf{theorem 2.2}.
