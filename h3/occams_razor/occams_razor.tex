@@ -1,0 +1,44 @@
+\textbf{Question 1:} Let $d\in \mathbb{N}_0$ and let $\Sigma_d$ and $\mathcal{H}_d$ be defined as in the assignment text. $\Sigma_d$ consists of all strings of length $d$, which can be constructed using letters from the alfabet $\Sigma$. Therefore, the size of $\Sigma_d$ is the number of ways to choose $d$ elements from $\Sigma$ with replacement. This means that 
+\begin{align}
+|\Sigma_d| = |\Sigma|^d = 27^d 
+\end{align}
+
+$\mathcal{H}_d$ consists of all functions $f: \Sigma_d \to \{0,1\}$. There is a one-to-one correspondance between such functions and the subsets of $\Sigma_d$. To show this, we can just map any such function $f$ to the subset $A_f = \{ s \in \Sigma_d | f(s) = 1 \}$, and map any subset $A$ of $\Sigma_d$ to the function $f_A: \Sigma_d \to \{0,1\}$, where $f_A(s)=1$, if and only if $s\in A$. Because there is a one-to-one correspondance between the elements of $\mathcal{H}_d$ and the power set $\mathcal{P}(\Sigma_d)$ of $\Sigma_d$, then
+\begin{align}
+|\mathcal{H}_d| = |\mathcal{P}(\Sigma_d)| = 2^{|\Sigma_d|}=2^{27^d}
+\end{align}
+
+Since $\mathcal{H}_d$ is finite, we can use $\textbf{Theorem 3.2}$ to conclude that with probability $1 - \delta$ for all $h \in \mathcal{H}_d$
+\begin{align}
+L(h) \leq \hat{L}(h, S) + \sqrt{\frac{\ln \frac{|\mathcal{H}_d|}{\delta}}{2n}} = \hat{L}(h, S) + \sqrt{\frac{\ln \frac{2^{27^d}}{\delta}}{2n}}
+\end{align}
+where $S$ is some labeled sample of strings from $\Sigma_d$, and $|S|=n$. 
+
+Since we have insisted to use a very complex hypothesis space, the size of $\mathcal{H}_d$ grows double exponentially as a function of $d$. This means that the term 
+\begin{align}
+\sqrt{\frac{\ln \frac{2^{27^d}}{\delta}}{2n}}
+\end{align}
+grows exponentially as a function of $d$. Therefore, we would have to choose $d$ quite small or have a very large sample size $n$ in order to get a useful bound in practice.
+
+\textbf{Question 2:} Let $\mathcal{H}$ be defined as in the assignment text. Since $\mathcal{H}_d$ is finite for all $d\in \mathbb{N}_0$, then $\mathcal{H}_d$ is countable for all $d\in \mathbb{N}_0$. Therefore, $\mathcal{H}$ is a countable union of countable sets, which means that $\mathcal{H}$ is also countable. Therefore, we can use $\textbf{Theorem 3.3}$ to conclude that with probability $1 - \delta$ for all $h \in \mathcal{H}$
+\begin{align}
+L(h) \leq \hat{L}(h,S) + \sqrt{\frac{\ln \frac{1}{p(h)\delta}}{2n}}
+\end{align}
+where $p: \mathcal{H} \to (0,1)$ is some function defined independently of $S$ with $\sum_{h \in \mathcal{H}}p(h) \leq 1$. What set is $S$ in the context of this question? Any specific hypothis $h\in \mathcal{H}$ belongs to $\mathcal{H}_d$ for some specific $d\in \mathbb{N}_0$. In other words, any $h\in \mathcal{H}$ is only defined for strings of a specific length $d$. We therefore have a many-to-one mapping $d: \mathcal{H} \to \mathbb{N}_0$, where $d(h)$ is the length of strings that $h$ is defined for. With this frasing of the problem we can say that for each $h\in \mathcal{H}$, $S$ must be a labeled sample of strings from $\Sigma_{d(h)}$. We can also use the function $d: \mathcal{H} \to \mathbb{N}_0$ to define a function $p: \mathcal{H} \to (0,1)$ by
+\begin{align}
+p(h)=\frac{1}{2^{d(h) + 1}}\frac{1}{2^{27^{d(h)}}}
+\end{align}
+Since $\sum_{d=0}^\infty \frac{1}{2^{d+1}}=1$, then $\sum_{d=0}^\infty p(h) \leq 1$. Therefore, we can substitute $p(h)$ in on line (14), by which we get that with probability $1 - \delta$ for all $h \in \mathcal{H}$
+\begin{align}
+L(h) \leq \hat{L}(h,S) + \sqrt{\frac{\ln \frac{2^{d(h) + 1} 2^{27^{d(h)}}}{\delta}}{2n}}
+\end{align}
+
+\textbf{Question 3:} The term 
+\begin{align}
+\sqrt{\frac{\ln \frac{2^{d(h) + 1} 2^{27^{d(h)}}}{\delta}}{2n}}
+\end{align}
+grows exponentially as a function of $d(h)$. However, we should also expect the term 
+\begin{align}
+\hat{L}(h,S) 
+\end{align}
+to decrease as a function of $d(h)$, since a $h$ with a higher $d(h)$ uses more information - that is, longer strings - to make its predictions. In terms of picking a $h$ that optimizes the bound, the question is if this decrease outweighs the growth in the other term, also caused by having $h$ defined on longer string lengths.

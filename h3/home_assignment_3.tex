@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper]{geometry} %page size
+\usepackage{parskip} %no paragraph indentation
+\usepackage{fancyhdr} %fancy stuff in page header
+\pagestyle{fancy} 
+
+\usepackage[utf8]{inputenc} %encoding
+\usepackage[danish]{babel} %danish letters
+
+\usepackage{graphicx} %import pictures
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools} %doing math
+\usepackage{algorithmicx, algpseudocode} %doing pseudocode,
+
+\fancyhead{}
+\lhead{Machine Learning: Home Assignment 3}
+\rhead{Asger Andersen}
+
+%End of preamble
+%*******************************************************************************
+
+\begin{document}
+
+\section{To Split or Not To Split?}
+
+\input{to_split_or_not/to_split_or_not.tex}
+
+\section{Occam's Razor}
+
+\input{occams_razor/occams_razor.tex}
+
+\section{Kernels}
+
+\subsection{Distance in feature space}
+
+\input{some_section.tex}
+
+Let $k$ be a kernel on input space $\mathcal{X}$ defining the RKHS $\mathcal{H}$, and let $\Phi: \mathcal{X} \to \mathcal{H}$ be the corresponding feature map. Let $\langle \cdot \rangle$ be the inner product on $\mathcal{H}$, which has been defined as part of the construction of $\mathcal{H}$ as the RKHS of $k$. 
+
+Let $x,z\in \mathcal{X}$. By definition of the canonical norm on a Hilbert space, we know that
+\begin{align}
+||\Phi(x) - \Phi(z) ||^2 = \langle \Phi(x) - \Phi(z),\Phi(x) - \Phi(z) \rangle
+\end{align}
+Since any inner product on a Hilbert space must be linear in both arguments, we get that
+\begin{align}
+\langle \Phi(x) - \Phi(z),\Phi(x) - \Phi(z) \rangle = 
+\langle \Phi(x),\Phi(x) \rangle + \langle \Phi(z),\Phi(z) \rangle - 2\langle \Phi(x) , \Phi(z) \rangle
+\end{align}
+By line (19-20) we know get that
+\begin{align}
+||\Phi(x) - \Phi(z) || = \sqrt{\langle \Phi(x),\Phi(x) \rangle + \langle \Phi(z),\Phi(z) \rangle - 2\langle \Phi(x) , \Phi(z) \rangle}
+\end{align}
+By construction of the RKHS of $k$, we know that for all $x_1, x_2 \in \mathcal{X}$
+\begin{align}
+k(x_1,x_2)=\langle \Phi(x_1), \Phi(x_2) \rangle
+\end{align}
+By line (21-22) we know have that
+\begin{align}
+||\Phi(x) - \Phi(z) || = \sqrt{k(x,z) + k(z,z) - 2k(x,z)}
+\end{align}
+which is what I was asked to show.
+
+\subsection{Sum of kernels}
+
+Let $k_1, k_2: \mathcal{X}\times \mathcal{X} \to \mathbb{R}$ be kernels\footnote{I omit to say positive definit kernels, since it is a part of the definition of a kernel that it is positive definit.}. Let $x_1,...,x_m \in \mathcal{X}$, and let $A$ and $B$ be the Gram matrix of $k_1$ and $k_2$, respectively, with respect to $x_1,...,x_m$. Since $k_1$ and $k_2$ are kernels, $A$ and $B$ are positive definit matrices, which means
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j A_{ij} \geq 0
+\end{align}
+and 
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j B_{ij} \geq 0
+\end{align}
+
+Consider now the function $k_3:\mathcal{X}\times \mathcal{X} \to \mathbb{R}$ defined by
+\begin{align}
+k_3(x,y) = k_1(x,y) + k_2(x,y)
+\end{align}
+Let $C$ be the Gram matrix of $k_3$ with respect to $x_1,...,x_m$. By definition of $C$ and $k_3$ we have that
+\begin{align}
+C_{ij} = k_3(x_i,x_j) = k_1(x_i,x_j) + k_2(x_i,x_j) = A_{ij} + B_{ij}
+\end{align} 
+By line (24-25) and (27) we now get that
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j C_{ij} = \sum_{i,j}^m c_i c_j (A_{ij} + B_{ij}) \\
+= \sum_{i,j}^m c_i c_jA_{ij} + \sum_{i,j}^m c_i c_jB_{ij} \geq 0
+\end{align}
+This means that $C$ is positive definit. 
+
+Since $x_1,...,x_m$ was arbitrary we now have that for all $m \in \mathbb{N}$ and for all $x_1,...,x_m$, then the Gram matrix of the function $k_3$ with respect to $x_1,...,x_m$ is positive definit. This means that $k_3$ is a kernel function.
+
+All in all, I have now shown that if $k_1$ and $k_2$ are kernels on input space $\mathcal{X}$, then the function $k_3 = k_1 + k_2$ is also a kernel on $\mathcal{X}$.
+
+\subsection{Rank of Gram matrix}
+
+The answer is $m-d$. Like the degrees of freedom.
+
+\end{document}
