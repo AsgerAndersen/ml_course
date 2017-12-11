@@ -1,0 +1,153 @@
+Let $k$ be a kernel on input space $\mathcal{X}$ defining the RKHS $\mathcal{H}$, and let $\Phi: \mathcal{X} \to \mathcal{H}$ be the corresponding feature map. Let $\langle \cdot \rangle$ be the inner product on $\mathcal{H}$, which has been defined as part of the construction of $\mathcal{H}$ as the RKHS of $k$. 
+
+Let $x,z\in \mathcal{X}$. By definition of the canonical norm on a Hilbert space, we know that
+\begin{align}
+||\Phi(x) - \Phi(z) ||^2 = \langle \Phi(x) - \Phi(z),\Phi(x) - \Phi(z) \rangle
+\end{align}
+Since any inner product on a Hilbert space must be linear in both arguments, we get that
+\begin{align}
+\langle \Phi(x) - \Phi(z),\Phi(x) - \Phi(z) \rangle = 
+\langle \Phi(x),\Phi(x) \rangle + \langle \Phi(z),\Phi(z) \rangle - 2\langle \Phi(x) , \Phi(z) \rangle
+\end{align}
+By line (19-20) we know get that
+\begin{align}
+||\Phi(x) - \Phi(z) || = \sqrt{\langle \Phi(x),\Phi(x) \rangle + \langle \Phi(z),\Phi(z) \rangle - 2\langle \Phi(x) , \Phi(z) \rangle}
+\end{align}
+By construction of the RKHS of $k$, we know that for all $x_1, x_2 \in \mathcal{X}$
+\begin{align}
+k(x_1,x_2)=\langle \Phi(x_1), \Phi(x_2) \rangle
+\end{align}
+By line (21-22) we know have that
+\begin{align}
+||\Phi(x) - \Phi(z) || = \sqrt{k(x,z) + k(z,z) - 2k(x,z)}
+\end{align}
+which is what I was asked to show.
+
+\subsection{Sum of kernels}
+
+Let $k_1, k_2: \mathcal{X}\times \mathcal{X} \to \mathbb{R}$ be kernels\footnote{I omit to say positive definit kernels, since it is a part of the definition of a kernel that it is positive definit.}. Let $x_1,...,x_m \in \mathcal{X}$, and let $A$ and $B$ be the Gram matrix of $k_1$ and $k_2$, respectively, with respect to $x_1,...,x_m$. Since $k_1$ and $k_2$ are kernels, $A$ and $B$ are positive definit matrices, which means
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j A_{ij} \geq 0
+\end{align}
+and 
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j B_{ij} \geq 0
+\end{align}
+
+Consider now the function $k_3:\mathcal{X}\times \mathcal{X} \to \mathbb{R}$ defined by
+\begin{align}
+k_3(x,y) = k_1(x,y) + k_2(x,y)
+\end{align}
+Let $C$ be the Gram matrix of $k_3$ with respect to $x_1,...,x_m$. By definition of $C$ and $k_3$ we have that
+\begin{align}
+C_{ij} = k_3(x_i,x_j) = k_1(x_i,x_j) + k_2(x_i,x_j) = A_{ij} + B_{ij}
+\end{align} 
+By line (24-25) and (27) we now get that
+\begin{align}
+\forall c_1,...,c_m \in \mathbb{R}: \sum_{i,j}^m c_i c_j C_{ij} = \sum_{i,j}^m c_i c_j (A_{ij} + B_{ij}) \\
+= \sum_{i,j}^m c_i c_jA_{ij} + \sum_{i,j}^m c_i c_jB_{ij} \geq 0
+\end{align}
+This means that $C$ is positive definit. 
+
+Since $x_1,...,x_m$ was arbitrary we now have that for all $m \in \mathbb{N}$ and for all $x_1,...,x_m$, then the Gram matrix of the function $k_3$ with respect to $x_1,...,x_m$ is positive definit. This means that $k_3$ is a kernel function.
+
+All in all, I have now shown that if $k_1$ and $k_2$ are kernels on input space $\mathcal{X}$, then the function $k_3 = k_1 + k_2$ is also a kernel on $\mathcal{X}$.
+
+\subsection{Rank of Gram matrix}
+
+Let me start by proving a general theorem in linear algegra, namely that for all matrices $X$ with elements in the real numbers, we have that
+\begin{align}
+N(X^TX) = N(X) 
+\end{align}
+where $N$ is the null space of a matrix. 
+
+Let $X$ be a matrix with real elements. Let $x\in N(X)$. By definition of the null space, this means that
+\begin{align}
+Xx = \overline{0}
+\end{align}
+By the standard properties of matrices, it hereby follows that
+\begin{align}
+(X^TX)x = (X^T)(Xx)=X^T\overline{0}=\overline{0}
+\end{align}
+which means that
+\begin{align}
+x\in N(X^TX) 
+\end{align}
+We have now shown that
+\begin{align}
+N(X^TX)\subset N(X)
+\end{align}
+Now assume that $x\in N(X^TX)$. By definition of the null space, this means that
+\begin{align}
+(X^T X)x = \overline{0}
+\end{align}
+By the standard properties of matrices with real elements, it hereby follows that
+\begin{align}
+||Xx||^2 = (Xx)^T(Xx)=(x^TX^T)(Xx)=x^T((X^TX)x)=x^T\overline{0}=0
+\end{align}
+which implies that
+\begin{align}
+||Xx||=0
+\end{align}
+which implies that
+\begin{align}
+Xx=\overline{0}
+\end{align}
+which means that
+\begin{align}
+x\in N(X)
+\end{align}
+We have now shown that 
+\begin{align}
+N(X)\subset N(X^TX)
+\end{align}
+Line (34) and (40) together implies that the theorem stated on line (30) is true.
+
+The rank-nullity theorem of linear algebra tells us that if $X$ is some matrix with $n$ columns, then 
+\begin{align}
+rank(X) + dim(N(X)) = n 
+\end{align}
+By the theorem I have just proven, it follows that for all matrices $X$ with real elements
+\begin{align}
+dim(N(X))=dim(N(X^TX))
+\end{align}
+By this and the rank-nullity theorem we get that for all matrices $X$ with real elements
+\begin{align}
+rank(X) = rank(X^TX)
+\end{align}
+
+Let me now use this generel result to prove a bound on the rank of Gram Matrices arising from a linear kernel, $k(x,z)=x^Tz$ for $x,z \in \mathbb{R}^d$, on the input space $\mathbb{R}^d$. 
+
+Let $x_1,...,x_m \in \mathbb{R}^d$. Construct the matrix $X$ by letting the vector $x_i$ by the $i^{th}$ column of $X$. By the definition of matrix multiplication, this means that for all $i, j \in{1,...,m}$
+\begin{align}
+(X^TX)_{ij} = x_i^Tx_j = k(x_i,x_j)
+\end{align}
+By the definition of the Gram matrix of $k$ with respect to $x_1,...,x_m$, this means that for all $i, j \in{1,...,m}$
+\begin{align}
+(X^TX)_{ij} = G_{ij}
+\end{align}
+which means that
+\begin{align}
+X^TX=G 
+\end{align}
+By line (43), this gives us that
+\begin{align}
+rank(G)=rank(X^TX)=rank(X)
+\end{align}
+Since $X$ has $d$ rows and $m$ columns, then
+\begin{align}
+rank(X) \leq \min(d,m)
+\end{align}
+It hereby follows that
+\begin{align}
+rank(G) \leq \min(d,m)
+\end{align}
+We have now proven that, if we define the kernel $k$ as above on the input space $\mathbb{R}^d$, then for all training points $x_1, ..., x_m \in \mathbb{R}^d$, the rank of the Gram matrix $G$ of $k$ with respect to these training points is bounded by
+\begin{align}
+rank(G) \leq \min(d,m)
+\end{align}
+In any practical learning problem, we hopefully have that the number $m$ of training points is larger than the number $d$ of features. In that case, we will have that
+\begin{align}
+rank(G) \leq d 
+\end{align}
+In that case, $G$ will not have full rank, since $G$ is an $m\times m$ matrix.
