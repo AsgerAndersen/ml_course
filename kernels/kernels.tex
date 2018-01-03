@@ -1,0 +1,127 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper]{geometry} %page size
+\usepackage{parskip} %no paragraph indentation
+\usepackage{fancyhdr} %fancy stuff in page header
+\pagestyle{fancy} 
+
+\usepackage[utf8]{inputenc} %encoding
+\usepackage[danish]{babel} %danish letters
+
+\usepackage{graphicx} %import pictures
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools} %doing math
+\usepackage{algorithmicx, algpseudocode} %doing pseudocode,
+
+\fancyhead{}
+\lhead{Machine Learning: Kernels}
+\rhead{Asger Andersen}
+
+%End of preamble
+%*******************************************************************************
+
+\begin{document}
+
+\section{RHKS for a generel kernel}
+
+Let $k$ be a kernel on the input space $\mathcal{X}$. We want to construct a Hilbert space $\mathcal{F}$ and a mapping $\phi: \mathcal{X} \to \mathcal{F}$, such that 
+\begin{align}
+k(x_1,x_2)=\langle\phi(x_1),\phi(x_2) \rangle
+\end{align}
+for all $x_1,x_2 \in \mathcal{X}$. Let us start by defining a function $f_x$ for all $x \in \mathcal{X}$ by
+\begin{align}
+f_{x}:\mathcal{X} \to \mathbb{R}, \quad f_x(x') = k(x,x')
+\end{align}
+If we think of the kernel as a similarity measure between points in the input space, then $f_x$ measures how similar the other points in the input space is to $x$. We can now consider the set of functions
+\begin{align}
+F(\mathcal{X}, k) = \{f_x\ |\ x\in \mathcal{X} \}
+\end{align}
+and ask ourself, if it is a Hilbert space regardless of which kernel, we used to define it? Not necessarily. In fact, we do not even know, if it is a vector space. We can turn it into a vector space by taking its span:
+\begin{align}
+S(\mathcal{X},k) = \text{span}(F(\mathcal{X}, k)) \\ = 
+\{f: \mathcal{X}\to \mathbb{R}\ |\ f =  \sum_{i=1}^m a_i f_{x_i},\ m\in \mathbb{N},\ a_i\in \mathbb{R},\ x_i \in \mathcal{X} \} \\ =
+\{f: \mathcal{X}\to \mathbb{R}\ |\ f(x) =  \sum_{i=1}^m a_i k(x_i,x),\ m\in \mathbb{N},\ a_i\in \mathbb{R},\ x_i \in \mathcal{X} \}
+\end{align}
+$S(\mathcal{X},k)$ consists of any real function on the input space $\mathcal{X}$ that can be written as a weighted average of $f_{x_1},...,f_{x_m}$ for some finite sequence of points $x_1,...,x_m$ in the input space $\mathcal{X}$. If we think of the kernel as a similarity measure between points in the input space, then $S(\mathcal{X},k)$ consists of any real function $f$ on the input space $\mathcal{X}$, where the value $f(x)$ for all $x\in \mathcal{X}$ can be written as a weigted average of how similar $x$ is to each of $x_1,...,x_m$ for some finite sequence of points in $\mathcal{X}$.
+
+By definition of $S(\mathcal{X},k)$ we know that some subset of $F(\mathcal{X},k)$ is a basis of $S(\mathcal{X},k)$. If $F(\mathcal{X},k)$ is a linearly independent set, then $F(\mathcal{X},k)$ is a basis of $S(\mathcal{X},k)$. If $F(\mathcal{X},k)$ is infinite and linearly independent, then we have that $S(\mathcal{X},k)$ is infinite dimensional. If $F(\mathcal{X},k)$ is finite, or some finite subset of $F(\mathcal{X},k)$ still spans $S(\mathcal{X},k)$, then we have that $S(\mathcal{X},k)$ is finite dimensional.
+
+$S(\mathcal{X},k)$ is a vector space, and we can turn it into an inner product space by defining for all $f,g \in S(\mathcal{X},k)$ that if 
+\begin{align}
+f(x) = \sum_{i=1}^m a_ik(x_i,x)
+\end{align}
+and
+\begin{align}
+g(x) = \sum_{j=1}^n b_ik(x'_j,x)
+\end{align}
+are representations of $f$ and $g$\footnote{Although the definition of the inner product uses specific representations of $f$ and $g$, its easy to proof that the value of $\langle f,g \rangle$ is independent of the concrete representations, we use to calculate the value.}, then 
+\begin{align}
+\langle f, g \rangle = \sum_i^m \sum_j^n a_i b_j k(x_i,x'_j)
+\end{align}
+Lets call inner product space we get by imposing this inner product on $S(\mathcal{X},k)$ for $\tilde{S}(\mathcal{X},k)$. Since $\tilde{S}(\mathcal{X},k)$ is an inner product space, Cauchy sequences are defined in $\tilde{S}(\mathcal{X},k)$. We get the completion of $\tilde{S}(\mathcal{X},k)$ by including the limit of any Cauchy sequence as a point in the completed space:
+\begin{align}
+\mathcal{F} = \overline{\tilde{S}(\mathcal{X},k)}
+\end{align}
+This completed space is now a Hilbert space. We can define a function $\phi:\mathcal{X} \to \mathcal{F}$ by simply saying
+\begin{align}
+\phi(x) = f_x
+\end{align}
+By construction we now get that for all $x, x' \in \mathcal{X}$:
+\begin{align}
+\langle \phi(x), \phi(x') \rangle = \langle f_x, f_x' \rangle = \sum_{i=1}^1 \sum_{j=1}^1 1\cdot1\cdot k(x,x') = k(x,x') 
+\end{align}
+since we know by construction that $f_x$ can be written as
+\begin{align}
+f_x(y)=k(x,y)
+\end{align}
+and $f_{x'}$ can be written as
+\begin{align}
+f_{x'}(y)=k(x',y)
+\end{align}
+
+\pagebreak
+
+\section{RKHS for a Gaussian kernel}
+
+Let $\mathcal{X} = \mathbb{R}^n$ for some $n\in \mathbb{N}$. Let $k_\gamma$ be the Gaussian kernel with spread parameter $\gamma$, that is for all $x,x' \in \mathcal{X}$:
+\begin{align}
+k_\gamma(x,x')=e^{-\gamma||x-x'||^2}
+\end{align}
+We define for all $x\in \mathcal{X}$:
+\begin{align}
+f_x: \mathcal{X}\to \mathbb{R}, \quad f_x(x') = k_\gamma(x,x') = e^{-\gamma||x-x'||^2}
+\end{align}
+and the set of functions
+\begin{align}
+F(\mathcal{X}, k_\gamma) = \{f_x\ |\ x\in \mathcal{X} \} = \{f(x') = e^{-\gamma||x-x'||^2}\ |\ x\in \mathcal{X} \}
+\end{align}
+In other words, $F(\mathcal{X},k_\gamma)$ is the set of n-dimensional Gaussian density functions with all covariances set to 0, all variances set to $\frac{1}{\gamma}$, and some $x\in \mathbb{R}^n$ as mean.
+
+We can now consider the vector space:
+\begin{align}
+S(\mathcal{X},k_\gamma) = \text{span}(F(\mathcal{X}, k_\gamma)) \\ = 
+\{f: \mathcal{X}\to \mathbb{R}\ |\ f(x) =  \sum_{i=1}^m a_i k_\gamma(x_i,x),\ m\in \mathbb{N},\ a_i\in \mathbb{R},\ x_i \in \mathcal{X} \} \\ =
+\{f: \mathcal{X}\to \mathbb{R}\ |\ f(x) =  \sum_{i=1}^m a_i e^{-\gamma||x-x'||^2},\ m\in \mathbb{N},\ a_i\in \mathbb{R},\ x_i \in \mathcal{X} \} 
+\end{align}
+My guess is that this must be the vector space of all n-dimensional Gaussian density distributions with all covariances set to 0 and equal variances in all n dimensions. However, I am not sure that this is the case.
+
+Since the function set $F(\mathcal{X},k_\gamma)$ is a linearly independent, spanning subset of $S(\mathcal{X},k_\gamma)$, and $F(\mathcal{X},k_\gamma)$ is infinite, we get that $S(\mathcal{X},k_\gamma)$ is infinite dimensional. The intuitive reason that $F(\mathcal{X},k_\gamma)$ is linearly independent is that all the Gaussian density functions in $F(\mathcal{X},k_\gamma)$ have the same covariance matrix and different means. If we should build one density function by a weighted average of some of the rest of the density functions, we would need to add the weighted, chosen density functions, which means that the resulting function would have a covariance matrix with larger variances. Therefore it would not be in $F(\mathcal{X},k_\gamma)$ at all. In other words, $F(\mathcal{X},k_\gamma)$ is linearly independent, because the weighted sum of any of its members falls outside of $F(\mathcal{X},k_\gamma)$.
+
+$S(\mathcal{X},k_\gamma)$ is a vector space, and we can turn it into an inner product space by defining for all $f,g \in S(\mathcal{X},k_\gamma)$ that if 
+\begin{align}
+f(x) = \sum_{i=1}^m a_ie^{-\gamma||x - x_i ||^2}
+\end{align}
+and
+\begin{align}
+g(x) = \sum_{j=1}^n b_ie^{-\gamma||x - x_j ||^2}
+\end{align}
+are representations of $f$ and $g$, then 
+\begin{align}
+\langle f, g \rangle = \sum_i^m \sum_j^n a_i b_j e^{-\gamma||x_j - x_i ||^2}
+\end{align}
+
+\section{Why god, why?}
+
+Why is this way of viewing kernels interesting, when we never use anything from $\mathcal{F}$ in our learnings algorithms except for the value of the inner products calculated via the kernel. One reason is that we can proof that certain properties are true for our learning algorithm, if the dot product on $\mathbb{R}^n$ is replaced by any inner product on some feature space $\mathcal{F}$. Therefore, we need to know that the kernel taken on $x$ and $x'$ is an inner product on the transformations of these points in some transformed feature space. To make this very generel, we need to use function spaces as our feature space instead of just scalar spaces. 
+
+\end{document}

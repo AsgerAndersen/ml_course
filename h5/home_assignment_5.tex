@@ -1,0 +1,44 @@
+\documentclass[12pt]{article}
+
+\usepackage[a4paper]{geometry} %page size
+\usepackage{parskip} %no paragraph indentation
+\usepackage{fancyhdr} %fancy stuff in page header
+\pagestyle{fancy} 
+
+\usepackage[utf8]{inputenc} %encoding
+\usepackage[danish]{babel} %danish letters
+
+\usepackage{graphicx} %import pictures
+\usepackage{booktabs}
+
+\usepackage{amsmath, amssymb, amsfonts, amsthm, mathtools} %doing math
+\usepackage{algorithmicx, algpseudocode} %doing pseudocode,
+
+\fancyhead{}
+\lhead{Machine Learning: Home Assignment 5}
+\rhead{Asger Andersen}
+
+%End of preamble
+%*******************************************************************************
+
+\begin{document}
+
+\section{The growth function}
+
+\input{growth_function/growth_function.tex}
+
+\section{VC-dimension}
+
+Unfortunately, I have not had the time to solve this part of the assigment.
+
+\section{Generalization Bound for Learning Gaussian RBF Kernel Bandwith}
+
+Unfortunately, I have not had the time to solve this part of the assigment.
+
+\section{Random Forests}
+
+\textbf{Question 1:} Is nearest neighbor classification affected by normalizing each feature to having mean equal to 0 and standard deviation equal to 1? Yes. When we use nearest neighbor classification, we need to calculate the distance between each sample point according to some distance metric on the input space $\mathcal{X}$. If each point consists of $n$ real valued features, that is $\mathcal{X}=\mathbb{R}^n$, a very common distance metric is just the normal dot product on $\mathbb{R}^n$. With this metric the order of the distances between a point in $\mathcal{X}$ and the different sample points might be different, if we scale the features differently: The larger the variance and the absolute value of the mean a feature has, the more it will influence the how far two points are from each other. 
+
+\textbf{Question 2:} Unfortunately, I have not had the time to solve this part of the assigment.
+
+\end{document}

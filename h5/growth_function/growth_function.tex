@@ -1,0 +1,97 @@
+\textbf{Question 1:} Let $\mathcal{H}$ be any hypothesis set, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$. Abu-Mostafa 2015 defines that
+\begin{align}
+\mathcal{H}(x_1,...,x_N) = \{(h(x_1),...,h(x_N))\ |\ h\in \mathcal{H}\}
+\end{align}
+for specific $x_1,...,x_N \in \mathcal{X}$, and further defines the growth function $m_\mathcal{H}:\mathbb{N}\to \mathbb{N}$ as
+\begin{align}
+m_\mathcal{H}(N) = \max_{x_1,...,x_N \in \mathcal{X}} |\mathcal{H}(x_1,...,x_N)|
+\end{align}
+
+Since $h(x)\in\{-1,1 \}$ for all $h\in \mathcal{H}$ and $x\in \mathcal{X}$, we must have for all $N\in \mathbb{N}$ and all $x_1,...,x_N \in \mathcal{X}$:
+\begin{align}
+\mathcal{H}(x_1,...,x_N) \subset \{-1,1 \}^N = \{(y_1,...,y_N)\ |\ y_1,...,y_N \in \{-1, 1 \} \}
+\end{align}
+which implies that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq |\{-1,1 \}^N | = 2^N 
+\end{align}
+This is true whether or not $\mathcal{H}$ is finite or infinite. 
+
+If we now assume that $\mathcal{H}$ is finite with $\mathcal{H} = \{h_1,...,h_M\}$, then we get that for all $N\in \mathbb{N}$ and all $x_1,...,x_N \in \mathcal{X}$:
+\begin{align}
+\mathcal{H}(x_1,...,x_N) = \{(h_i(x_1),...,h_i(x_N))\ |\ i\in \{1,...,M \}\}
+\end{align}
+which implies that for all $N\in \mathbb{N}$ and all $x_1,...,x_N \in \mathcal{X}$:
+\begin{align}
+|\mathcal{H}(x_1,...,x_N)| \leq M
+\end{align}
+which implies that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq M 
+\end{align}
+By line (1) and (7) we now have that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq \min (M,2^N)
+\end{align}
+
+\textbf{Question 2:} Let $\mathcal{H}$ be any hypothesis set, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$. Define the shattered sample sizes $\mathcal{N}_\mathcal{H}$ for $\mathcal{H}$ as:
+\begin{align}
+\mathcal{N}_\mathcal{H} = \{ N\in \mathbb{N}\ |\ m_\mathcal{H}(N) = 2^N \}
+\end{align}
+We can now rewrite Abu-Mostafa 2015's definition of the VC-dimension $d_{VC}$ of $\mathcal{H}$ as
+\begin{align}
+d_{VC}(\mathcal{H}) = \max \mathcal{N}_\mathcal{H}
+\end{align}
+where
+\begin{align}
+\max \mathcal{N}_\mathcal{H} = \infty
+\end{align}
+if $\mathcal{N}_\mathcal{H} = \mathbb{N}$.
+
+Assume that $\mathcal{H}$ is finite with $|\mathcal{H}|=M$. Let me now proof that for all $N \in \mathcal{N}_\mathcal{H}$:
+\begin{align}
+N \leq \log_2 M
+\end{align}
+Assume that $N \in \mathcal{N}_\mathcal{H}$. By definition of $\mathcal{N}_\mathcal{H}$ we now have that
+\begin{align}
+m_\mathcal{H}(N)=2^N 
+\end{align}
+Since $|\mathcal{H}|=M$, we know from question 1 that
+\begin{align}
+m_\mathcal{H}(N)=\min(M, 2^N) 
+\end{align}
+From combining line (13) and (14), we now get that
+\begin{align}
+2^N \leq M 
+\end{align}
+which implies that
+\begin{align}
+N \leq \log_2M
+\end{align}
+I have now proven that for all $N \in \mathcal{N}_\mathcal{H}$:
+\begin{align}
+N \leq \log_2 M
+\end{align}
+This clearly means that 
+\begin{align}
+d_{VC}(\mathcal{H}) = \max \mathcal{N}_\mathcal{H} \leq \log_2 M
+\end{align}
+I have now proven that for all hypothesis sets $\mathcal{H}$, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$ and $|\mathcal{H}|=M$, we have that
+\begin{align}
+d_{VC}(\mathcal{H}) \leq \log_2 M
+\end{align}
+
+\textbf{Question 3:} Let $\mathcal{H}$ be any hypothesis set, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$. As I argued in question 1, we have that for all $N \in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq 2^N
+\end{align}
+which implies that for all $N \in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(2N) \leq 2^{2N} = \left(2^N\right)^2
+\end{align}
+which together with line (20) implies that for all $N \in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq \left( m_\mathcal{H}(N) \right)^2
+\end{align}
+
+\textbf{Question 4:} Unfortunately, I have not had the time to solve this question.

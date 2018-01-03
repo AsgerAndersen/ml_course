@@ -1,0 +1,55 @@
+\subsection{Data normalization}
+Let $\mu_i$ and $\sigma_i$ be the empirical mean and standard deviation of the $98$ measurements of the $i^{th}$ feature in the training data. I define my normalization function $f_{norm}:\mathbb{R}^{22}\to \mathbb{R}^{22}$ by  
+\begin{align}
+f_{norm}(x) = \left(f^1_{norm}(x_1), ...,f^{22}_{norm}(x_{22})\right) 
+\end{align}
+where
+\begin{align}
+f^i_{norm}(x_i) = \frac{x_i - \mu_i}{\sigma_i}
+\end{align}
+I implement this function with $StandardScaler$ object in the $sklearn.preprocessing$ module of the $scikit learn$ library in Python.
+
+Here is a table of the mean and standard deviation of each of the features in the training data, before and after the normalization. Each entrance is rounded to the $4^{th}$ decimal:
+\begin{center}
+\input{svms/train_norm_table.tex}
+\end{center}
+\vspace{10pt}
+
+Here is the same kind of table for the test data:
+
+\begin{center}
+\input{svms/test_norm_table.tex}
+\end{center}
+\vspace{10pt}
+
+As can be seen from the tables, each feature of the normalized training data ends up with a mean of 0 and a standard deviation of 1. Since the empirical means and standard deviations of the training data features are also used to normalize the test data features, the normalized test data features do not end up with means of exactly 0 or standard deviations of exactly 1. However, the test data features that start with means far way from 0 and standard deviations far away from 1 still end up with normalized means and standard deviations that are very much closer to 0 and 1 than the unnormalized ones.
+
+\subsection{Model selection using grid-search}
+
+Let 
+\begin{align}
+\mathcal{C}=\{0.01,0.1,1,10,100,1000,10000\}\\ 
+\mathcal{Y} = \{0.0001,0.001,0.01,0.1,1,10,100 \}
+\end{align}
+Let $(X_1,...,X_5)$ be a random split of the training data $X$ into 5 subsets of as equal size as possible. Let 
+\begin{align}
+h^{i}_{C,\gamma} \quad i\in \{1,...,5 \},\ C\in \mathcal{C},\ \gamma \in \mathcal{Y}
+\end{align}
+be the classifier, we get by running an svm with a radial kernel on the union of all the splits of the training data except $X_i$ with the hyperparametres set to $C$ and $\gamma$. We can now run the classifier $h^i_{C,\gamma}$ on the set $X_i$ and observe the accuracy of $h^i_{C,\gamma}$ on $X_i$, which we can call the $i^{th}$ validation score for the combined hyperparametres $(C,\gamma)$. Let us denote this quantity by $S^i_{C,\gamma}$. 
+
+For any combination of hyperparametres $(C,\gamma)\in \mathcal{C}\times \mathcal{Y}$ we can now define the 5-fold cross validation score $S_{C,\gamma}$ on the training set $X$ as the average of each of the $i^{th}$ validation scores of the given pair $(S,\gamma)$:
+\begin{align}
+S_{C,\gamma} = \frac{1}{5} \sum_{i=1}^5 S^i_{C,\gamma}
+\end{align}
+
+When we use 5-fold cross validation grid search to choose a pair of hyperparametres $(C,\gamma)$ from the parameter grid $\mathcal{C}\times \mathcal{Y}$, then we first calculate the 5-fold cross validation score $S_{C,\gamma}$ for all $(C,\gamma) \in \mathcal{C}\times \mathcal{Y}$. We then choose the pair $(C,\gamma)$ with the highest validation score. 
+
+I have implemented 5-fold cross validation grid search with the object $GridSearchCV$ from the module $sklearn.model_selection$ in the $scikit learn$ library in Python. Here is a heatmap of the resulting cross validation score - rounded to the nearest 2 decimals - for all $(C,\gamma) \in \mathcal{C}\times \mathcal{Y}$:
+\begin{center}
+\includegraphics[scale=1]{svms/cv_heatmap.jpg}
+\end{center}
+The pair with the maximum 5-fold cross validation score on the given training set is $(C = 10,\gamma = 0.1)$ with the score $0.9082$. The radial kernel svm trained on the entire training set $X$ with this pair of hyperparametres obtains an accuracy of $0.9072$ on the test set.
+
+\subsection{Inspecting the kernel expansion}
+
+Unfortunately, I have not had the time to complete this part of the assignment.

@@ -1,0 +1,63 @@
+\textbf{Question 4:} NOT SOLVED YET.
+
+\textbf{Question 5:} Let $\mathcal{H}$ be any hypothesis set, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$. Theorem 2.4 in Abu-Mostafa 2015 states that if $m_\mathcal{H}(d) < 2^d$ for some $d \in \mathbb{N}$, then for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq \sum_{i=0}^{d-1} \binom{N}{i}
+\end{align}
+From this and question 4, it directly follows that if $m_\mathcal{H}(k) < 2^d$ for some $d \in \mathbb{N}$, then for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq N^{d-1} + 1
+\end{align}
+
+\textbf{Question 6:} Let $\mathcal{H}$ be any hypothesis set, where $h:\mathcal{X}\to \{-1,1\}$ for all $h\in \mathcal{H}$, and assume that there exists some $d\in \mathbb{N}$ such that $m_\mathcal{H}(d) < 2^d$. From question 1, we know that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq 2^N
+\end{align}
+From question 6, we know that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq N^{d-1} + 1
+\end{align}
+Therefore, we get that for all $N\in \mathbb{N}$:
+\begin{align}
+m_\mathcal{H}(N) \leq \min (N^{d-1} + 1, 2^N)
+\end{align}
+Let $\mathcal{N}_\mathcal{H}$ be defined as in question 2, and assume that $N \in \mathcal{N}_\mathcal{H}$. By definition of $\mathcal{N}_\mathcal{H}$ we now have that
+\begin{align}
+m_\mathcal{H}(N)=2^N 
+\end{align}
+From combining line (XXXX) and (XXXX), we now get that
+\begin{align}
+2^N \leq N^{d-1} + 1
+\end{align}
+Define 
+\begin{align}
+A_d = \{N \ |\  2^N \leq N^{d-1} + 1\}
+\end{align}
+Line (XXXX - XXXX) proofs that
+\begin{align}
+\mathcal{N}_\mathcal{H}\subset A_d
+\end{align}
+which implies
+\begin{align}
+d_{VC}(\mathcal{H}) = \max \mathcal{N}_\mathcal{H} \leq \max A_d
+\end{align}
+If the numerical value of $A_d$ is of any interest, it can be found numerically for any $d$. $A_d$ is namely finite for any $d\in \mathbb{N}$, because the lefthand inequality defining $A_d$ is exponential, whereas the right hand side is polynomial.
+
+
+\textbf{Question 7:} We see from the fact that the quantity
+\begin{align}
+\binom{N}{d-1}
+\end{align}
+must be meaningful in order for line (XXXX) in question 5 to be meaningful that $d-1\leq N$. If this is not the case and $d-1>N$, we also have that
+\begin{align}
+2^N \leq N^{d-1} + 1
+\end{align}
+is true for all $N \in \mathbb{N}$, which implies that
+\begin{align}
+A_d = \mathbb{N}
+\end{align}
+which implies that the bound on line (XXXX) turns into
+\begin{align}
+d_{VC}(\mathcal{H}) \leq \infty
+\end{align}
+which is not a very useful bound.
